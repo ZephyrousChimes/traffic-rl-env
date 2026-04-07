@@ -253,3 +253,20 @@ traffic_env/
     ├── app.py             # FastAPI application (HTTP + WebSocket endpoints)
     └── Dockerfile         # Container image definition
 ```
+## Observation Model
+
+At each turn, the agent can see the entire network state.
+We have described below what a network state constitutes.
+
+### Intersection (Nodes)
+
+Each intersection is in a unique phase at a given point of time. 
+
+Each intersection has a set of instream queues and outstream nodes. 
+In the most general case, the agent can route the traffic from any instream queue to any outstream node, individually.
+
+But usually not all mappings are valid. For some instream lanes, it is not possible to go all the outstream nodes. Also, we have a set of safe instream-outstream pairs that can be opened simultaneously avoiding accidents.
+
+The valid choices are what we call **phases**.
+
+### Phases $\rightarrow$ Intersection
