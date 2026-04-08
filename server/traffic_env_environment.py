@@ -324,7 +324,7 @@ class TrafficEnvironment(Environment):
         raw = pressure + starvation + throughput
 
         # Clamp to [-1, 1]
-        return float(max(-1.0, min(1.0, raw)))
+        return float(max(0, min(1.0, raw)))
 
     # ------------------------------------------------------------------
     # Helpers
