@@ -97,24 +97,20 @@ class TrafficEnvironment(Environment):
 
         # Routes
         sn_route = Route(inroad=sc_road.id, outroad=cn_road.id)
-        ss_route = Route(inroad=sc_road.id, outroad=cs_road.id)
         se_route = Route(inroad=sc_road.id, outroad=ce_road.id)
         sw_route = Route(inroad=sc_road.id, outroad=cw_road.id)
 
-        nn_route = Route(inroad=nc_road.id, outroad=cn_road.id)
         ns_route = Route(inroad=nc_road.id, outroad=cs_road.id)
         ne_route = Route(inroad=nc_road.id, outroad=ce_road.id)
         nw_route = Route(inroad=nc_road.id, outroad=cw_road.id)
 
         en_route = Route(inroad=ec_road.id, outroad=cn_road.id)
         es_route = Route(inroad=ec_road.id, outroad=cs_road.id)
-        ee_route = Route(inroad=ec_road.id, outroad=ce_road.id)
         ew_route = Route(inroad=ec_road.id, outroad=cw_road.id)
 
         wn_route = Route(inroad=wc_road.id, outroad=cn_road.id)
         ws_route = Route(inroad=wc_road.id, outroad=cs_road.id)
         we_route = Route(inroad=wc_road.id, outroad=ce_road.id)
-        ww_route = Route(inroad=wc_road.id, outroad=cw_road.id)
 
 
         unregulated_phase = Phase(routes=[])
@@ -122,25 +118,22 @@ class TrafficEnvironment(Environment):
         phase_set = [
             Phase(routes=[
                 sw_route.id, wn_route.id, ne_route.id, es_route.id,
-                nn_route.id, ns_route.id, nw_route.id,
-                nn_route.id
+                ns_route.id, nw_route.id,
             ]),
 
             Phase(routes=[
                 sw_route.id, wn_route.id, ne_route.id, es_route.id,
-                sn_route.id, ss_route.id, se_route.id,
-                ss_route.id
+                sn_route.id, se_route.id,
             ]),
 
             Phase(routes=[
                 sw_route.id, wn_route.id, ne_route.id, es_route.id,
-                en_route.id, ee_route.id, ew_route.id,
-                ee_route.id
+                en_route.id, ew_route.id,
             ]),
 
             Phase(routes=[
                 sw_route.id, wn_route.id, ne_route.id, es_route.id,
-                wn_route.id, ws_route.id, we_route.id, ww_route.id
+                ws_route.id, we_route.id,
             ]),
         ]
 
@@ -161,10 +154,10 @@ class TrafficEnvironment(Environment):
         ]
 
         routes = [
-            nn_route, ns_route, ne_route, nw_route,
-            sn_route, ss_route, se_route, sw_route,
-            en_route, es_route, ee_route, ew_route,
-            wn_route, ws_route, we_route, ww_route,
+            ns_route, ne_route, nw_route,
+            sn_route, se_route, sw_route,
+            en_route, es_route, ew_route,
+            wn_route, ws_route, we_route,
         ]
 
         intersections = [
@@ -182,6 +175,9 @@ class TrafficEnvironment(Environment):
             intersections=intersections
         )
 
+
+    def initiate_traffic(self, seed: Optional[int] = 42):
+        pass
 
     def reset(
         self,
