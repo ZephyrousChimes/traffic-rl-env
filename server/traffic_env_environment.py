@@ -49,6 +49,7 @@ class TrafficEnvironment(Environment):
     def __init__(self):
         """Initialize the traffic_env environment."""
         self._state = State(episode_id=str(uuid4()), step_count=0)
+        self.create_network()
         self._reset_count = 0
 
     def create_network(self, seed: Optional[int] = 42):
