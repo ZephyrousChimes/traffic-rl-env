@@ -1,8 +1,8 @@
 ---
 title: Traffic Env Environment Server
 emoji: 🚦
-colorFrom: #FFFDF8
-colorTo: #E2D3BE
+colorFrom: "#FFFDF8"
+colorTo: "#E2D3BE"
 sdk: docker
 pinned: false
 app_port: 8000
