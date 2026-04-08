@@ -269,6 +269,21 @@ At each turn, the agent can see the entire network state.
 We have described below what a network state constitutes.
 
 
+### Data Plane and Control Plane
+
+The network is divided into two layers- 
+- **the control plane**: 
+the high level view of the road network connecting different nodes.
+
+- **the data plane**:
+the low level control at each intersection.
+
+Both planes are represented as their own graphs. The control plane consists of different junctions and roads between them. The data plane consists of the various roads that join at the junction and the edges between them tell the ability to go from one road to another.
+Lanes are treated as different roads across which we can change freely.
+
+Any agent can do whatever it wills with this information.
+
+
 ### Intersection (Nodes)
 
 Each intersection is in a unique phase at a given point of time. 

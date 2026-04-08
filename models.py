@@ -14,7 +14,7 @@ from uuid import uuid4
 from openenv.core.env_server.types import Action, Observation
 from pydantic import Field, BaseModel, model_validator
 from enum import Enum
-from typing import List, NewType, Tuple
+from typing import List, Tuple, Optional
 
 
 
@@ -84,8 +84,11 @@ class Road(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid4()))
     src: str
     dst: str
-    inflight: List[Tuple[str, str]] = Field(default=[])
-    waiting: List[Tuple[str, int]] = Field(default=[])
+    inflight: int = Field(default=0)
+    waiting: int = Field(default=0)
+    base_arrival_rate: float = Field(default=0.5)
+    surge_multiplier: float = Field(default=1.0)
+    surge_step: Optional[int] = Field(default=None)
 
 
 
@@ -115,15 +118,17 @@ class RoadNetwork(BaseModel):
     roads: List[Road]
     intersections: List[Intersection]
 
+class IntersectionPhaseDecision(BaseModel):
+    intersection_id: str
+    phase_id: str
 
 class TrafficAction(Action):
-    """Action for the Traffic Env environment - declaration of the phase for each intersection"""
-
-    message: List[Tuple[str, str]]
+    decisions: List[IntersectionPhaseDecision]
 
 
 
 class TrafficObservation(Observation):
     """Observation from the Traffic Env environment - the entire road network state"""
-
+    task: str = Field(default='easy')
+    step: int = Field(default=0)
     road_network: RoadNetwork
